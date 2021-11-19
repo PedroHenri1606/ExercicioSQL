@@ -33,6 +33,6 @@ public class Carro {
 
     @Override
     public String toString() {
-        return "Carro: " + "id= " + id + " nomeCarro= " + nomeCarro + " marcaCarro= " + marcaCarro  + '}';
+        return "Carro: " + "id= " + id + " nomeCarro= " + nomeCarro + " marcaCarro= " + marcaCarro ;
     }
 }

@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class CarroView {
 
     CarroController carroController = new CarroController();
+    FabricanteView fabricanteView = new FabricanteView();
 
     public void telaMenu() {
         System.out.println("--------------------------------------");
@@ -31,10 +32,10 @@ public class CarroView {
 
             switch (opcao) {
                 case 1:
-                    menuCarro();
+                    this.menuCarro();
                     break;
                 case 2:
-                    this.menuFabricante();
+                    fabricanteView.menuFabricante();
                     break;
                 case 0:
                     return;
@@ -73,6 +74,8 @@ public class CarroView {
                     this.editarCarro();
                 case 0:
                     return;
+                default:
+                    break;
             }
         } while (opcao != 0);
     }
@@ -93,7 +96,7 @@ public class CarroView {
             Carro carro = (Carro)var.next();
             PrintStream var10000 = System.out;
             int var10001 = carro.getId();
-            var10000.println("Id: " + var10001 + " Veiculo: " + carro.getNomeCarro() + " Fabricante: " + carro.getMarcaCarro());
+            var10000.println("Id: " + var10001 + " |Veiculo: " + carro.getNomeCarro() + " |Fabricante: " + carro.getMarcaCarro());
         }
     }
 
@@ -130,31 +133,6 @@ public class CarroView {
                 return;
         }
         this.carroController.editar(id,opcao,conteudo);
-    }
-
-    public void menuFabricante() {
-
-        Scanner scan = new Scanner(System.in);
-        int opcao;
-
-        do {
-            System.out.println("--------------------------------------");
-            System.out.println("      [1] - Selecionar Fabricante     ");
-            System.out.println("      [2] - Visualizar Fabricantes    ");
-            System.out.println("      [0] - Voltar                    ");
-            System.out.println("--------------------------------------");
-
-            opcao = scan.nextInt();
-
-            switch (opcao) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 0:
-                    return;
-            }
-        } while (opcao != 0);
     }
 
 }
