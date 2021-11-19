@@ -9,6 +9,7 @@ import java.util.List;
 
 public class CarroDAO {
     Connection connection = (new ConnectionFactory()).getConnection();
+    FabricanteDAO fabricanteDAO = new FabricanteDAO();
 
     public CarroDAO() {
     }

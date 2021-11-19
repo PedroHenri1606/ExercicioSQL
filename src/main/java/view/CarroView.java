@@ -1,6 +1,7 @@
 package view;
 
 import controller.CarroController;
+import controller.FabricanteController;
 import model.Carro;
 
 import java.io.PrintStream;
@@ -12,6 +13,7 @@ public class CarroView {
 
     CarroController carroController = new CarroController();
     FabricanteView fabricanteView = new FabricanteView();
+    FabricanteController fabricanteController = new FabricanteController();
 
     public void telaMenu() {
         System.out.println("--------------------------------------");
@@ -84,7 +86,10 @@ public class CarroView {
         Carro carro = new Carro();
         Scanner scan = new Scanner(System.in);
         System.out.print(" Nome: "); carro.setNomeCarro(scan.nextLine());
-        System.out.print(" Fabricante: "); carro.setMarcaCarro(scan.nextLine());
+        System.out.println("--------------------------------------");
+        fabricanteView.listar();
+        System.out.println("--------------------------------------");
+        System.out.print("Selecione Fabricante por id: "); carro.setMarcaCarro(scan.nextLine());
         this.carroController.cadastrarCarro(carro);
     }
 

@@ -3,6 +3,10 @@ package view;
 import controller.FabricanteController;
 import model.Fabricante;
 
+import java.awt.print.Printable;
+import java.io.PrintStream;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class FabricanteView {
@@ -30,6 +34,7 @@ public class FabricanteView {
                     this.cadastrar();
                     break;
                 case 2:
+                    this.listar();
                     break;
                 case 3:
                     break;
@@ -47,5 +52,18 @@ public class FabricanteView {
 
         System.out.print("Nome: "); fabricante.setNome(scan.nextLine());
         this.fabricanteController.cadastro(fabricante);
+    }
+
+    public void listar(){
+        List<Fabricante> fabricantes = this.fabricanteController.listarFabricantes();
+        Iterator var = fabricantes.iterator();
+
+        while(var.hasNext()){
+            Fabricante fabricante = (Fabricante)var.next();
+            PrintStream var10000 = System.out;
+            int var10001 = fabricante.getId();
+            var10000.println("Id: " + var10001 + " |Veiculo: " + fabricante.getNome());
+        }
+
     }
 }
