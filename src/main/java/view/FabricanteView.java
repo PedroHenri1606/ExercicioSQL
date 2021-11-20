@@ -62,8 +62,8 @@ public class FabricanteView {
             Fabricante fabricante = (Fabricante)var.next();
             PrintStream var10000 = System.out;
             int var10001 = fabricante.getId();
-            var10000.println("Id: " + var10001 + " |Veiculo: " + fabricante.getNome());
+            var10000.println("Id: " + var10001 + " |Marca: " + fabricante.getNome());
         }
-
     }
+
 }

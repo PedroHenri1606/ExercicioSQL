@@ -86,12 +86,24 @@ public class CarroView {
         Carro carro = new Carro();
         Scanner scan = new Scanner(System.in);
         System.out.print(" Nome: "); carro.setNomeCarro(scan.nextLine());
-        System.out.println("--------------------------------------");
-        fabricanteView.listar();
-        System.out.println("--------------------------------------");
-        System.out.print("Selecione Fabricante por id: "); carro.setMarcaCarro(scan.nextLine());
+        carro.setMarcaCarro(this.escolhendoFabricante());
         this.carroController.cadastrarCarro(carro);
     }
+
+    public String escolhendoFabricante(){
+        Scanner scan = new Scanner(System.in);
+
+
+            System.out.println("--------------------------------------");
+            fabricanteView.listar();
+            System.out.println("--------------------------------------");
+            System.out.print  ("Selecione por id: ");
+            int fabricante1 =Integer.parseInt(scan.nextLine());
+            String fabricante = fabricanteController.escolherFabricante(fabricante1);
+            System.out.println("--------------------------------------");
+            return fabricante;
+        }
+
 
     public void listarCarros(){
         List<Carro> carros = this.carroController.listarCarros();

@@ -12,6 +12,8 @@ import java.util.List;
 
 public class FabricanteDAO {
 
+    Fabricante fabricante = new Fabricante();
+
     Connection connection = (new ConnectionFactory().getConnection());
 
     public FabricanteDAO(){}
@@ -76,4 +78,43 @@ public class FabricanteDAO {
         }
     }
 
+    public String escolherFabricante(int escolha){
+
+        String sql = "select nome from testedb.fabricantes where idfabricante = "+ escolha;
+
+        String nomeFabricante="";
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()) {
+                 nomeFabricante = resultSet.getString("nome");
+            }
+            statement.execute();
+            statement.close();
+            return nomeFabricante;
+            } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
+/*
+        String sql = "select * from testedb.fabricantes";
+
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList fabricantes = new ArrayList();
+
+            while(resultSet.next()){
+                Fabricante fabricante = new Fabricante();
+                fabricante.setId(resultSet.getInt("idfabricante"));
+                fabricante.setNome(resultSet.getString("nome"));
+                fabricantes.add(fabricante);
+            }
+            return fabricantes;
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+         } */
