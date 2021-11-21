@@ -93,7 +93,6 @@ public class CarroView {
     public String escolhendoFabricante(){
         Scanner scan = new Scanner(System.in);
 
-
             System.out.println("--------------------------------------");
             fabricanteView.listar();
             System.out.println("--------------------------------------");
@@ -123,12 +122,14 @@ public class CarroView {
         System.out.println("--------------------------------------");
         this.listarCarros();
         System.out.println("--------------------------------------");
-        System.out.println(" Selecione o Id para remover: ");
+        System.out.print  (" Selecione o Id para remover: ");
         int id = Integer.parseInt(scan.nextLine());
         this.carroController.removerCarro(id);
     }
 
     public void editarCarro(){
+        Carro carro = new Carro();
+
         Scanner scan = new Scanner(System.in);
         this.listarCarros();
         String conteudo = null;
@@ -143,7 +144,7 @@ public class CarroView {
                 System.out.print("Informe o novo nome do Veiculo: "); conteudo = scan.nextLine();
                 break;
             case 2:
-                System.out.print("Informe o novo fabricante do Veiculo: "); conteudo = scan.nextLine();
+                conteudo = this.escolhendoFabricante();
                 break;
             default:
                 System.out.println("OPCAO INFORMADA INVALIDA");
