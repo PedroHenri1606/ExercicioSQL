@@ -1,4 +1,4 @@
-        package dao;
+package dao;
 
 import factory.ConnectionFactory;
 import model.Carro;
@@ -11,10 +11,10 @@ public class CarroDAO {
     Connection connection = (new ConnectionFactory()).getConnection();
     FabricanteDAO fabricanteDAO = new FabricanteDAO();
 
-    public CarroDAO() {
-    }
+    public CarroDAO() {}
 
     public void criaTabelaCarros() {
+
         String sql = "create table if not exists carros" +
                 "(idCarro int primary key auto_increment," +
                 "nome VARCHAR(45) NOT NULL," +
@@ -30,6 +30,7 @@ public class CarroDAO {
     }
 
     public void cadastraCarro(Carro carro) {
+
         String sql = "insert into testedb.carros(nome, fabricante) value (?, ?)";
 
         try {
@@ -44,6 +45,7 @@ public class CarroDAO {
     }
 
     public List<Carro> listarCarros() {
+
         String sql = "select * from testedb.carros";
 
         try {
@@ -65,6 +67,7 @@ public class CarroDAO {
     }
 
     public void remover(int id){
+
         try{
             String sql = "delete from testedb.carros where idCarro = ?";
             PreparedStatement statement = this.connection.prepareStatement(sql);
@@ -78,6 +81,7 @@ public class CarroDAO {
     }
 
     public void editar(int id,int opcao,String conteudo){
+
         String sql = null;
         switch (opcao) {
             case 1:

@@ -19,6 +19,7 @@ public class FabricanteDAO {
     public FabricanteDAO(){}
 
     public void criaTabelaFabricante(){
+
         String sql = "create table if not exists fabricantes" +
                 "(idFabricante int primary key auto_increment," +
                 "nome VARCHAR(45) NOT NULL)";
@@ -33,6 +34,7 @@ public class FabricanteDAO {
     }
 
     public void cadastroFabricante(Fabricante fabricante){
+
         String sql = "insert into testedb.fabricantes(nome) value (?)";
 
         try{
@@ -46,6 +48,7 @@ public class FabricanteDAO {
     }
 
     public List<Fabricante> listarFabricantes(){
+
         String sql = "select * from testedb.fabricantes";
 
         try{
@@ -66,6 +69,7 @@ public class FabricanteDAO {
     }
 
     public void remover(int id){
+
         try{
             String sql = "delete from testedb.fabricantes where idfabricante = ?";
             PreparedStatement statement = this.connection.prepareStatement(sql);
@@ -78,43 +82,42 @@ public class FabricanteDAO {
         }
     }
 
-    public String escolherFabricante(int escolha){
+    public String escolherFabricante(int escolha) {
 
-        String sql = "select nome from testedb.fabricantes where idfabricante = "+ escolha;
+        String sql = "select nome from testedb.fabricantes where idfabricante = " + escolha;
 
-        String nomeFabricante="";
-        try{
+        String nomeFabricante = "";
+        try {
             PreparedStatement statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
 
-            while(resultSet.next()) {
-                 nomeFabricante = resultSet.getString("nome");
+            while (resultSet.next()) {
+                nomeFabricante = resultSet.getString("nome");
             }
             statement.execute();
             statement.close();
+
             return nomeFabricante;
-            } catch (SQLException e){
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
-}
-/*
-        String sql = "select * from testedb.fabricantes";
+    public void editar(int id,String conteudo) {
 
-        try{
+        String sql = "update testedb.fabricantes set nome = ? where idfabricante = ?";
+
+        try {
             PreparedStatement statement = this.connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            ArrayList fabricantes = new ArrayList();
+            statement.setString(1,conteudo);
+            statement.setInt(2,id);
 
-            while(resultSet.next()){
-                Fabricante fabricante = new Fabricante();
-                fabricante.setId(resultSet.getInt("idfabricante"));
-                fabricante.setNome(resultSet.getString("nome"));
-                fabricantes.add(fabricante);
-            }
-            return fabricantes;
-        } catch (SQLException e){
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-         } */
+        }
+    }
+}

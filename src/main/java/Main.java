@@ -8,13 +8,14 @@ public class Main {
 
     public static void main(String[] args) {
 
+        CarroView carroView = new CarroView();
         CarroDAO carroDAO = new CarroDAO();
+
         FabricanteDAO fabricanteDAO = new FabricanteDAO();
 
         fabricanteDAO.criaTabelaFabricante();
         carroDAO.criaTabelaCarros();
 
-        CarroView carroView = new CarroView();
         carroView.menu();
     }
 }

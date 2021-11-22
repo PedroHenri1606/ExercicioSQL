@@ -13,4 +13,5 @@ public class FabricanteController {
     public List<Fabricante> listarFabricantes(){ return this.fabricanteDAO.listarFabricantes();}
     public void remover(int id){ this.fabricanteDAO.remover(id);}
     public String escolherFabricante(int escolha){ return fabricanteDAO.escolherFabricante(escolha);}
+    public void editar(int id,String conteudo){ fabricanteDAO.editar(id,conteudo);}
 }

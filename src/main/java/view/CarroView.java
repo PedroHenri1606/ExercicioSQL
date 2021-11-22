@@ -16,6 +16,7 @@ public class CarroView {
     FabricanteController fabricanteController = new FabricanteController();
 
     public void telaMenu() {
+
         System.out.println("--------------------------------------");
         System.out.println("         [1] - Menu Carros            ");
         System.out.println("         [2] - Menu Fabricantes       ");
@@ -41,8 +42,12 @@ public class CarroView {
                     break;
                 case 0:
                     return;
+                default:
+                    System.out.println("--------------------------------------");
+                    System.out.println("        OPÇÃO INVALIDA!");
+                    break;
             }
-        } while (opcao != 0);
+        } while (true);
     }
 
 
@@ -79,47 +84,75 @@ public class CarroView {
                 default:
                     break;
             }
-        } while (opcao != 0);
+        } while (true);
     }
 
     public void cadastrarCarro(){
+
+        FabricanteView fabricanteView = new FabricanteView();
         Carro carro = new Carro();
         Scanner scan = new Scanner(System.in);
-        System.out.print(" Nome: "); carro.setNomeCarro(scan.nextLine());
-        carro.setMarcaCarro(this.escolhendoFabricante());
+        System.out.println("--------------------------------------");
+        System.out.print  (" Nome: "); carro.setNomeCarro(scan.nextLine());
+
+        fabricanteView.listar();
+
+        System.out.println("--------------------------------------");
+        System.out.println(" Selecione opção para Fabricante ");
+        System.out.println("--------------------------------------");
+        System.out.println(" [1] - Cadastrar Fabricante ");
+        System.out.println(" [2] - Escolher Fabricante ");
+        System.out.println("--------------------------------------");
+        int opcao = scan.nextInt();
+
+
+        switch (opcao){
+            case 1:
+                fabricanteView.cadastrar();
+
+            case 2:
+                carro.setMarcaCarro(this.escolhendoFabricante());
+                break;
+
+            default:
+                System.out.println("--------------------------------------");
+                System.out.println("        OPÇÃO INVALIDA!");
+                return;
+        }
         this.carroController.cadastrarCarro(carro);
     }
 
     public String escolhendoFabricante(){
+
         Scanner scan = new Scanner(System.in);
 
-            System.out.println("--------------------------------------");
             fabricanteView.listar();
             System.out.println("--------------------------------------");
             System.out.print  ("Selecione por id: ");
             int fabricante1 =Integer.parseInt(scan.nextLine());
             String fabricante = fabricanteController.escolherFabricante(fabricante1);
-            System.out.println("--------------------------------------");
             return fabricante;
         }
 
 
     public void listarCarros(){
+
         List<Carro> carros = this.carroController.listarCarros();
         Iterator var = carros.iterator();
 
+        System.out.println("--------------------------------------");
         while(var.hasNext()){
             Carro carro = (Carro)var.next();
-            PrintStream var10000 = System.out;
-            int var10001 = carro.getId();
-            var10000.println("Id: " + var10001 + " |Veiculo: " + carro.getNomeCarro() + " |Fabricante: " + carro.getMarcaCarro());
+            PrintStream tmp1 = System.out;
+            int tmp2 = carro.getId();
+            tmp1.println("| Id: " + tmp2 + " | Veiculo: " + carro.getNomeCarro() + " | Fabricante: " + carro.getMarcaCarro());
         }
     }
 
     public void removerCarro(){
+
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("--------------------------------------");
         this.listarCarros();
         System.out.println("--------------------------------------");
         System.out.print  (" Selecione o Id para remover: ");
@@ -128,17 +161,19 @@ public class CarroView {
     }
 
     public void editarCarro(){
-        Carro carro = new Carro();
 
         Scanner scan = new Scanner(System.in);
         this.listarCarros();
-        String conteudo = null;
-        System.out.print(" Selecione o ID a ser editado: "); int id = Integer.parseInt(scan.nextLine());
+        String conteudo;
+        System.out.println("--------------------------------------");
+        System.out.print  ("Selecione o ID a ser editado: "); int id = Integer.parseInt(scan.nextLine());
         System.out.println("--------------------------------------");
         System.out.println("        [1] - Editar Nome ");
         System.out.println("        [2] - Editar Fabricante");
         System.out.println("--------------------------------------");
         int opcao = Integer.parseInt(scan.nextLine());
+        System.out.println("--------------------------------------");
+
         switch (opcao){
             case 1:
                 System.out.print("Informe o novo nome do Veiculo: "); conteudo = scan.nextLine();
